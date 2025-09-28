@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TaskFlow - Kanban Board</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🗂️ TaskFlow</h1>
+  <div class="board">
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>To Do</h2>
+      <div id="todo" class="task-list"></div>
+    </div>
+
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>In Progress</h2>
+      <div id="inprogress" class="task-list"></div>
+    </div>
+
+    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Done</h2>
+      <div id="done" class="task-list"></div>
+    </div>
+  </div>
+
+  <div class="add-task">
+    <input type="text" id="newTask" placeholder="New task..." />
+    <button onclick="addTask()">➕ Add Task</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

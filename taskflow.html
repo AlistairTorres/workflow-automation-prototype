@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TaskFlow - Kanban Board</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A small browser prototype for tracking work through a simple workflow.">
+  <title>Workflow Board Prototype</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
-  <h1>🗂️ TaskFlow</h1>
-  <div class="board">
-    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <h2>To Do</h2>
-      <div id="todo" class="task-list"></div>
-    </div>
+  <main class="app-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Workflow automation prototype</p>
+        <h1>Workflow board</h1>
+        <p class="intro">Capture small pieces of work and move them through a clear, three-stage flow.</p>
+      </div>
+      <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+    </header>
 
-    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <h2>In Progress</h2>
-      <div id="inprogress" class="task-list"></div>
-    </div>
+    <form id="taskForm" class="task-form">
+      <label for="newTask">Add a task</label>
+      <div class="form-row">
+        <input id="newTask" name="task" type="text" maxlength="120" placeholder="e.g. Review the project notes" autocomplete="off" required>
+        <button type="submit">Add task</button>
+      </div>
+    </form>
 
-    <div class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <h2>Done</h2>
-      <div id="done" class="task-list"></div>
-    </div>
-  </div>
+    <section class="board" aria-label="Workflow board">
+      <article class="column" data-status="todo">
+        <header class="column-header">
+          <h2>To do</h2>
+          <span class="count" data-count="todo">0</span>
+        </header>
+        <div id="todo" class="task-list" aria-label="To do tasks"></div>
+      </article>
 
-  <div class="add-task">
-    <input type="text" id="newTask" placeholder="New task..." />
-    <button onclick="addTask()">➕ Add Task</button>
-  </div>
+      <article class="column" data-status="inprogress">
+        <header class="column-header">
+          <h2>In progress</h2>
+          <span class="count" data-count="inprogress">0</span>
+        </header>
+        <div id="inprogress" class="task-list" aria-label="In progress tasks"></div>
+      </article>
 
-  <script src="script.js"></script>
+      <article class="column" data-status="done">
+        <header class="column-header">
+          <h2>Done</h2>
+          <span class="count" data-count="done">0</span>
+        </header>
+        <div id="done" class="task-list" aria-label="Done tasks"></div>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
